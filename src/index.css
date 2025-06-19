@@ -1,0 +1,45 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root {
+  /* Background Colors */
+  --color-background-primary: #0A0A0C; /* Very dark almost black for main background */
+  --color-background-secondary: #17171C; /* Slightly lighter dark for cards, sections, etc. */
+  --color-background-tertiary: #202025; /* Even lighter for hover states or subtle contrast */
+
+  /* Text Colors */
+  --color-text-primary: #E0E0E6; /* Light gray for main text, good contrast */
+  --color-text-secondary: #A0A0A9; /* Slightly darker gray for secondary info, labels */
+  --color-text-inverted: #0A0A0C; /* For text on light backgrounds */
+
+  /* Accent Colors (Modern Indigo/Blue) */
+  --color-accent-main: #6366F1; /* Core indigo for primary actions, highlights */
+  --color-accent-light: #818CF8; /* Lighter indigo for hover states, subtle elements */
+  --color-accent-dark: #4F46E5; /* Darker indigo for active states, stronger accents */
+
+  /* Border & Divider Colors */
+  --color-border-subtle: #2C2C32; /* Minimal dark border for separation */
+  --color-border-medium: #404048; /* More visible border for distinct elements */
+
+  /* Shadow Colors (subtle, dark shadows) */
+  --color-shadow-base: rgba(0, 0, 0, 0.25);
+  --color-shadow-lift: rgba(0, 0, 0, 0.4);
+
+  /* Font Family */
+  --font-family-primary: 'Inter', sans-serif;
+}
+
+/* Base Body Styles */
+body {
+  font-family: var(--font-family-primary);
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6; /* Improved readability */
+  -webkit-font-smoothing: antialiased; /* Smoother font rendering on WebKit browsers */
+  -moz-osx-font-smoothing: grayscale; /* Smoother font rendering on Firefox */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links within the page */
+  min-height: 100vh; /* Ensure body takes full viewport height */
+  margin: 0; /* Remove default margin */
+}
+
+
+@import "tailwindcss"; 

@@ -1,0 +1,166 @@
+import { Link } from "react-router-dom";
+import { TypeAnimation } from "react-type-animation";
+import { useState } from "react";
+
+const Homepage = () => {
+  const [typingStatus, setTypingStatus] = useState("human1");
+
+  return (
+    // Base padding for smallest screens, gradually increases
+    <div className="min-h-screen bg-gray-950 text-gray-100 flex flex-col items-center justify-between px-4 py-8 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20 relative overflow-hidden">
+
+      {/* Orbital image - subtle background, fixed size for better control */}
+      <img
+        src="/orbital.png"
+        alt="Orbital"
+        // Controlled size and opacity for a more ambient, less distracting background
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.07] z-0 animate-orbital-glow"
+      />
+
+      {/* Main content area - Responsive max-widths, dynamic gaps, adjusted vertical padding */}
+      <div className="relative z-10 flex flex-col md:flex-row items-center justify-center flex-grow w-full max-w-sm xs:max-w-md sm:max-w-xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[85rem] mx-auto gap-y-10 md:gap-y-0 md:gap-x-16 lg:gap-x-24 xl:gap-x-32 py-10 sm:py-16 md:py-20 lg:py-24">
+
+        {/* Left Section: Text Content - Refined spacing and text scaling */}
+        <div className="left flex flex-col items-center md:items-start text-center md:text-left space-y-4 sm:space-y-5 lg:space-y-6 flex-1">
+          {/* JARVIS title: Tighter on small mobile, expands gracefully */}
+          <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[9.5rem] font-extrabold text-blue-400 drop-shadow-lg animate-fade-in-down leading-tight">
+            JARVIS
+          </h1>
+          {/* Slogan: Optimized line height and scaling */}
+          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-gray-50 leading-snug sm:leading-tight animate-fade-in-up delay-200">
+            Supercharge your creativity and productivity
+          </h2>
+          {/* Description: Controlled max-width for readability on all screens */}
+          <h3 className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl text-gray-300 max-w-[280px] xs:max-w-[320px] sm:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-[40rem] animate-fade-in-up delay-400">
+            Dive into the future of AI. Seamlessly integrate powerful tools to enhance your daily workflow and unlock new possibilities.
+          </h3>
+          {/* Get Started Button: Responsive padding and font size */}
+          <Link
+            to="/dashboard"
+            className="mt-6 px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-4 lg:px-12 lg:py-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 animate-fade-in-up delay-600 text-base sm:text-lg lg:text-xl"
+          >
+            Get Started
+          </Link>
+        </div>
+
+        {/* Right Section: Bot Image and Chat Animation - Core adjustments for mobile proximity */}
+        <div className="right flex-1 flex justify-center items-center relative pt-8 pb-16 md:py-0"> {/* Adjusted vertical padding for mobile, creates space for chat bubble */}
+          {/* Image Container: Carefully scaled for different devices */}
+          <div className="imgContainer relative w-60 h-60 xs:w-72 xs:h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] xl:w-[550px] xl:h-[550px] 2xl:w-[650px] 2xl:h-[650px] flex justify-center items-center">
+            {/* Background glowing effect - unchanged, still works well */}
+            <div className="absolute inset-0 rounded-full animate-pulse-slow blur-2xl bg-gradient-to-br from-blue-500 to-purple-600 opacity-40"></div>
+            <div className="absolute inset-0 rounded-full animate-pulse-slow-reverse blur-xl bg-gradient-to-tl from-green-400 to-teal-500 opacity-30"></div>
+
+            {/* Bot Image */}
+            <img
+              src="/bot1.png"
+              alt="Bot"
+              className="relative z-10 w-full h-full object-contain rounded-full shadow-2xl animate-scale-in"
+            />
+
+            {/* Chat bubble: Positioned below the bot image, scaling with responsive breakpoints */}
+            {/* Key: `translate-y` to push it down from the bottom of imgContainer */}
+            <div className="chat absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 sm:translate-y-2/5 md:translate-y-1/3 lg:translate-y-1/4 xl:translate-y-1/6 2xl:translate-y-1/12 bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 flex items-center space-x-2 shadow-xl max-w-[200px] xs:max-w-[240px] sm:max-w-[280px] md:max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg z-20 animate-slide-in-up delay-1000">
+              {/* Chat Avatar: Responsive sizing */}
+              <img
+                src={
+                  typingStatus === "human1"
+                    ? "/human1.jpeg"
+                    : typingStatus === "human2"
+                    ? "/human2.jpeg"
+                    : "/bot.png"
+                }
+                alt="Chat Avatar"
+                className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-blue-500"
+              />
+              {/* TypeAnimation text: Responsive sizing */}
+              <TypeAnimation
+                sequence={[
+                  "Human: We produce food for Mice",
+                  2000,
+                  () => { setTypingStatus("bot"); },
+                  "Bot: We produce food for Hamsters",
+                  2000,
+                  () => { setTypingStatus("human2"); },
+                  "Human2: We produce food for Guinea Pigs",
+                  2000,
+                  () => { setTypingStatus("bot"); },
+                  "Bot: We produce food for Chinchillas",
+                  2000,
+                  () => { setTypingStatus("human1"); },
+                ]}
+                wrapper="span"
+                repeat={Infinity}
+                cursor={true}
+                omitDeletionAnimation={true}
+                className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-white"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Terms and Privacy Policy Section - Tighter, but balanced spacing */}
+      <div className="terms relative z-10 flex flex-col md:flex-row items-center justify-center md:justify-between w-full max-w-sm xs:max-w-md sm:max-w-xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[85rem] mx-auto py-6 border-t border-gray-700 mt-10 sm:mt-12 md:mt-16 lg:mt-20">
+        {/* Logo: Responsive sizing */}
+        <img src="/logo.png" alt="Logo" className="h-8 sm:h-10 md:h-12 lg:h-14 mb-3 md:mb-0 animate-fade-in delay-1500" />
+        {/* Links: Responsive stacking and spacing */}
+        <div className="links flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 text-sm sm:text-base md:text-lg text-gray-400 animate-fade-in delay-1700">
+          <Link to="/" className="hover:text-blue-400 transition-colors duration-300">
+            Terms of Service
+          </Link>
+          <span className="text-gray-500 hidden sm:block">|</span>
+          <Link to="/" className="hover:text-blue-400 transition-colors duration-300">
+            Privacy Policy
+          </Link>
+        </div>
+      </div>
+
+      {/* Custom CSS for animations (no changes here, they are good) */}
+      <style jsx>{`
+        /* Existing Animations */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseSlow { 0%, 100% { transform: scale(1); opacity: 0.4; } 50% { transform: scale(1.05); opacity: 0.6; } }
+        @keyframes pulseSlowReverse { 0%, 100% { transform: scale(1.05); opacity: 0.3; } 50% { transform: scale(1); opacity: 0.5; } }
+        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+        .animate-pulse-slow { animation: pulseSlow 4s infinite ease-in-out; }
+        .animate-pulse-slow-reverse { animation: pulseSlowReverse 4s infinite ease-in-out; }
+
+        /* NEW ANIMATIONS */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(50px) translateX(-50%); } to { opacity: 1; transform: translateY(var(--tw-translate-y, 0)) translateX(-50%); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+        @keyframes orbitalGlow { 0% { opacity: 0.08; transform: scale(1); } 50% { opacity: 0.12; transform: scale(1.01); } 100% { opacity: 0.08; transform: scale(1); } }
+
+        .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-slide-in-up { animation: slideInUp 0.8s ease-out forwards; }
+        .animate-scale-in { animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
+        .animate-orbital-glow { animation: orbitalGlow 10s infinite ease-in-out; }
+
+        /* Delay utilities - Keep these */
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-800 { animation-delay: 0.8s; }
+        .delay-1000 { animation-delay: 1s; }
+        .delay-1200 { animation-delay: 1.2s; }
+        .delay-1500 { animation-delay: 1.5s; }
+        .delay-1700 { animation-delay: 1.7s; }
+        .delay-2000 { animation-delay: 2s; }
+
+        /* Ensure animations are not visible initially */
+        .animate-fade-in-down,
+        .animate-fade-in-up,
+        .animate-slide-in-up,
+        .animate-scale-in,
+        .animate-fade-in {
+          opacity: 0;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Homepage;
