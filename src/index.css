@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-:root {
+@theme{
   /* Background Colors */
   --color-background-primary: #0A0A0C; /* Very dark almost black for main background */
   --color-background-secondary: #17171C; /* Slightly lighter dark for cards, sections, etc. */
@@ -27,8 +27,6 @@
   /* Font Family */
   --font-family-primary: 'Inter', sans-serif;
 }
-
-/* Base Body Styles */
 body {
   font-family: var(--font-family-primary);
   background-color: var(--color-background-primary);
@@ -40,6 +38,5 @@ body {
   min-height: 100vh; /* Ensure body takes full viewport height */
   margin: 0; /* Remove default margin */
 }
-
-
 @import "tailwindcss"; 
+

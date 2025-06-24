@@ -11,29 +11,31 @@ const RootLayout = () => {
   return (
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl='/'>
       <div className="min-h-screen flex flex-col bg-gray-950 text-gray-100 font-sans antialiased">
-        <header className="px-4 sm:px-8 py-4 flex items-center justify-between border-b border-gray-800 backdrop-blur-lg bg-gray-950/60">
-          <Link to="/" className="flex items-center gap-3 font-bold text-xl text-indigo-300 tracking-tight transition-colors duration-300 hover:text-indigo-200">
+        <header className="px-4 sm:px-8 py-3 flex items-center justify-between border-b border-gray-800 backdrop-blur-lg bg-gray-950/60 z-20 max-md:justify-end">
+          <Link
+            to="/"
+            className="hidden md:flex items-center gap-3 font-bold text-xl text-indigo-300 tracking-tight transition-colors duration-300 hover:text-indigo-200"
+          >
             <img src="/logo.png" alt="JARVIS Logo" className="w-9 h-9 object-contain" />
-            <span className="hidden sm:inline">JARVIS</span>
+            <span>JARVIS</span>
           </Link>
-          <div>
+          <div >
             <SignedIn>
               <UserButton
                 appearance={{
                   elements: {
-                  avatarBox: "!w-10 !h-10",
+                    avatarBox: "!w-10 !h-10",
                   },
                 }}
               />
             </SignedIn>
           </div>
         </header>
-        <main className="flex-1 flex items-center justify-center p-4">
-          <div className="w-full">
+        <main className="flex-1 flex items-center justify-center p-0">
+          <div className="w-full h-full">
             <Outlet />
           </div>
         </main>
-        
       </div>
     </ClerkProvider >
   );

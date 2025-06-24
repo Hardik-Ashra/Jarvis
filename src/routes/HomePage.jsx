@@ -10,7 +10,7 @@ const Homepage = () => {
       <img
         src="/orbital.png"
         alt="Orbital"
-        className="absolute inset-0 w-full h-full object-cover opacity-[0.07] z-0 animate-orbital-glow"
+        className="absolute inset-0  object-cover opacity-[0.07] z-0 animate-orbital-glow"
       />
       <div className="relative z-10 flex flex-col md:flex-row items-center justify-center flex-grow w-full max-w-sm xs:max-w-md sm:max-w-xl md:max-w-4xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-[80rem] mx-auto gap-y-10 md:gap-y-0 md:gap-x-16 lg:gap-x-24 xl:gap-x-28 2xl:gap-x-32 py-10 sm:py-16 md:py-20 lg:py-24">
         <div className="left flex flex-col items-center md:items-start text-center md:text-left space-y-4 sm:space-y-5 lg:space-y-6 flex-1">
@@ -38,38 +38,36 @@ const Homepage = () => {
             <img
               src="/bot1.png"
               alt="Bot"
-              className="relative z-10 w-full h-full object-contain rounded-full shadow-2xl animate-scale-in"
+              className="relative z-10 w-full h-full object-contain rounded-full shadow-2xl  animate-scale-in"
             />
-            <div className="chat absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 sm:translate-y-2/5 md:translate-y-1/3 lg:translate-y-1/4 xl:translate-y-[15%] 2xl:translate-y-[12%] bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 flex items-center space-x-2 shadow-xl max-w-[200px] xs:max-w-[240px] sm:max-w-[280px] md:max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg z-20 animate-slide-in-up delay-1000">
+            <div className=" hidden sm:flex  chat absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 sm:translate-y-2/5 md:translate-y-1/3 lg:translate-y-1/4 xl:translate-y-[15%] 2xl:translate-y-[12%] bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 sm:px-4 sm:py-2  items-center space-x-2 shadow-xl max-w-[200px] xs:max-w-[240px] sm:max-w-[280px] md:max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg z-20 animate-slide-in-up delay-1000">
               <img
                 src={
                   typingStatus === "human1"
                     ? "/human1.jpeg"
                     : typingStatus === "human2"
-                    ? "/human2.jpeg"
-                    : "/bot.png"
+                      ? "/human2.jpeg"
+                      : "/bot.png"
                 }
                 alt="Chat Avatar"
                 className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full object-cover border-2 border-blue-500"
               />
               <TypeAnimation
                 sequence={[
-                  "Human: We produce food for Mice",
-                  1500, // Stay for 1.5s
-                  () => { setTypingStatus("bot"); },
-                  1000, // Pause before deleting
-                  "Bot: We produce food for Hamsters", // Type this over previous
-                  1500,
-                  () => { setTypingStatus("human2"); },
-                  1000,
-                  "Human2: We produce food for Guinea Pigs",
+                  "User: Hello",
                   1500,
                   () => { setTypingStatus("bot"); },
                   1000,
-                  "Bot: We produce food for Chinchillas",
+                  "Bot: Hi! How can I help you?",
                   1500,
                   () => { setTypingStatus("human1"); },
                   1000,
+                  "User: I need some information",
+                  1500,
+                  () => { setTypingStatus("bot"); },
+                  1000,
+                  "Bot: Sure, ask me anything!",
+                  1500,
                 ]}
                 wrapper="span"
                 repeat={Infinity}
@@ -108,14 +106,18 @@ const Homepage = () => {
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes slideInUp { from { opacity: 0; transform: translateY(50px) translateX(-50%); } to { opacity: 1; transform: translateY(var(--tw-translate-y, 0)) translateX(-50%); } }
         @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-        @keyframes orbitalGlow { 0% { opacity: 0.08; transform: scale(1); } 50% { opacity: 0.12; transform: scale(1.01); } 100% { opacity: 0.08; transform: scale(1); } }
-
+      @keyframes orbitalGlowRotate {
+0% { opacity: 0.07; transform: scale(1) rotate(0deg); }
+50% { opacity: 0.1; transform: scale(1.01) rotate(180deg); }
+100% { opacity: 0.07; transform: scale(1) rotate(360deg); }
+}
         .animate-fade-in { animation: fadeIn 0.8s ease-out forwards; }
         .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
         .animate-slide-in-up { animation: slideInUp 0.8s ease-out forwards; }
         .animate-scale-in { animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; }
-        .animate-orbital-glow { animation: orbitalGlow 10s infinite ease-in-out; }
+       /* Combined Orbital Animation (Glow + Rotate) /
 
+.animate-orbital-glow { animation: orbitalGlowRotate 20s infinite linear; }
         /* Delay utilities - Keep these */
         .delay-200 { animation-delay: 0.2s; }
         .delay-400 { animation-delay: 0.4s; }
@@ -135,6 +137,7 @@ const Homepage = () => {
         .animate-fade-in {
           opacity: 0;
         }
+
       `}</style>
     </div>
   );
