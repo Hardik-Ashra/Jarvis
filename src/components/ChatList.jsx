@@ -12,10 +12,9 @@ const ChatList = ({ setIsSidebarOpen }) => { // Accept setIsSidebarOpen prop
   };
 
   return (
-    <div className="flex flex-col h-full px-2 max-md:py-10 ">
+    <div className="flex flex-col h-full px-2 max-md:pt-10 ">
       <Link
         to="/dashboard"
-        onClick={handleLinkClick}
         className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ease-in-out text-base
           ${location.pathname === "/dashboard"
             ? "bg-blue-900/30 text-blue-300 font-medium" // Simpler active state
@@ -52,7 +51,7 @@ const ChatList = ({ setIsSidebarOpen }) => { // Accept setIsSidebarOpen prop
       <span className="text-sm font-semibold text-gray-500 uppercase mb-4 tracking-widest"> {/* Adjusted margin-bottom */}
         Recent Chats
       </span>
-      <div className="flex flex-col custom-scrollbar overflow-y-auto flex-grow pr-2 space-y-2">
+      <div className="flex flex-col custom-scrollbar overflow-y-scroll flex-grow pr-2 space-y-2">
        
         {[...Array(30)].map((_, index) => (
           <Link

@@ -36,7 +36,7 @@ const DashboardLayout = () => {
   }
 
   return (
-    <div className="h-screen w-full flex flex-col md:grid md:grid-cols-[280px_1fr]  text-gray-100 font-sans relative overflow-hidden">
+    <div className="h-[90vh] w-full flex flex-col md:grid md:grid-cols-[280px_1fr]  text-gray-100 font-sans relative overflow-hidden">
       <img
         src="/orbital.png"
         alt="Orbital Background"
@@ -66,7 +66,7 @@ const DashboardLayout = () => {
       )}
 
  
-      <div className="content relative z-10 w-full h-screen  bg-gray-950 p-4 md:p-6 lg:p-8">
+      <div className="content relative z-10 w-full h-[90vh]  bg-gray-950 p-4 md:p-6 lg:p-8">
         <Outlet />
       </div>
 
